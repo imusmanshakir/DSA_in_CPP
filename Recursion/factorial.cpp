@@ -1,0 +1,19 @@
+#include <iostream>
+using namespace std;
+
+int factorial(int n)
+{
+    if (n == 0)
+    {
+
+        return 1; // Base case: if n is 0, stop recursion
+    }
+
+    return n * factorial(n - 1);// factorial again calling itself again and again
+}
+
+int main()
+{
+    cout << factorial(4);
+    return 0;
+}
