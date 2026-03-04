@@ -8,15 +8,16 @@ int main()
 
     for (int i = 1; i <= n; i++)
     {
-        int num = i; // start number for each row
-        char ch = 'A';
+        // print spaces before stars
+        for (int j = 1; j <= n - i; j++)
+        {
+            cout << " ";
+        }
 
+        // print stars with spaces
         for (int j = 1; j <= i; j++)
         {
-            cout << num << " ";
-            cout << ch << " ";
-            ch++;
-            num++;
+            cout << "* ";
         }
 
         cout << endl;
