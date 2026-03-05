@@ -32,30 +32,43 @@ int main()
     return 0;
 };
 
+// How the Bitwise NOT (~) Operator Works
 
+// Step 1: Start with the original number
+// Example:
+ // 5  → 00000101
 
+// Step 2: The ~ operator flips all bits (0 → 1, 1 → 0)
+ // 00000101
+ // ↓
+ // 11111010
 
+// Step 3: Since the leftmost bit becomes 1,
+// the result is interpreted as a negative number
+// (C++ uses two's complement representation for signed integers).
 
+// Understanding Two's Complement
+// Two's complement is used to represent negative numbers in binary.
 
-//For NOT Operator 
+// Steps to compute two's complement:
+// 1. Flip all bits (one's complement)
+// 2. Add 1
 
-// Original number
-//       ↓
-// ~ operator flips bits
-//       ↓
-// Result starts with 1 → treated as negative
-//       ↓
-// Two's complement used to calculate its value
-// Two's complement:
+// Example for -5:
+
 // Positive number
-// 00000101   (5)
+//  00000101   (5)
 
 // Flip bits
-// 11111010
+//  11111010
 
 // Add 1
-// 11111011   (-5)
-// ********Example****************
-// // ~x = -(x + 1)
-// // ~5 = -(5 + 1) = -6
-// // ~7 = -(7 + 1) = -8
+//  11111011   (-5)
+
+
+// Important Identity
+// ~x = -(x + 1)
+
+// Examples
+// ~5 = -(5 + 1) = -6
+// ~7 = -(7 + 1) = -8
