@@ -12,13 +12,13 @@ int main()
         for (int j = 0; j < n; j++)
 
         {
-            cout <<count<<" ";
+            cout << count << " ";
             count++;
         }
         cout << endl;
     }
 
-    cout<<"After pattern the value should be 10: "<<count<<endl;
+    cout << "After pattern the value should be 10: " << count << endl;
 
     return 0;
 }
