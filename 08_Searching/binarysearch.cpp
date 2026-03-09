@@ -2,19 +2,19 @@
 #include <vector>
 using namespace std;
 
-int binarySearch(vector<int> arr, int tar)
+int binarySearch(vector<int> array, int target)
 {
-    int st = 0, end = arr.size() - 1;
+    int start = 0, end = array.size() - 1;
 
-    while (st <= end)
+    while (start <= end)
     {
-        int mid = (st + end) / 2;
+        int mid = (start + end) / 2;
 
-        if (tar > arr[mid])
+        if (target > array[mid])
         {
-            st = mid + 1;
+            start = mid + 1;
         }
-        else if (tar < arr[mid])
+        else if (target < array[mid])
         {
             end = mid - 1;
         }
