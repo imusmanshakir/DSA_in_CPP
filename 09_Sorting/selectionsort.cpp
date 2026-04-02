@@ -31,10 +31,13 @@ void printResult(const vector<int> &arr)
 int main()
 {
 
-    vector<int> arr = {10,5,6,7,9,1,4,8,2,3};
+    vector<int> arr = {10, 5, 6, 7, 9, 1, 4, 8, 2, 3};
 
     selectionSort(arr);
     printResult(arr);
 
     return 0;
 }
+
+// claude visulization
+//  https://claude.ai/share/754ab5ad-527d-4d90-9143-86574ad791c5
