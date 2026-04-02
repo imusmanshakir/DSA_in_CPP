@@ -3,24 +3,22 @@
 
 using namespace std;
 
-void selectionSort(vector<int> &arr)
+void bubbleSort(vector<int> &arr)
 {
     int n = arr.size();
     for (int i = 0; i < n; i++)
     {
-        int minIndex = i;
-        for (int j = i + 1; j < n; j++)
+        for (int j = 0; j < n - i-1; j++)
         {
-            if (arr[j] < arr[minIndex])
+            if (arr[j] > arr[j + 1])
             {
-                minIndex = j;
+                swap(arr[j], arr[j + 1]);
             }
         }
-        swap(arr[i], arr[minIndex]);
     }
 }
 
-void printResult(const vector<int> &arr)
+void printResult(vector<int> &arr)
 {
     for (int val : arr)
     {
@@ -30,11 +28,13 @@ void printResult(const vector<int> &arr)
 
 int main()
 {
-
-    vector<int> arr = {10,5,6,7,9,1,4,8,2,3};
-
-    selectionSort(arr);
+vector<int> arr = {43, 7, 91, 15, 62, 38, 74, 5, 29, 83, 11, 57, 66, 3, 48, 20, 95, 34, 72, 19};
+    bubbleSort(arr);
     printResult(arr);
 
     return 0;
 }
+
+
+//claude visulization
+// https://claude.ai/share/b0e399ec-26ff-4d91-93a9-247395f362f8
