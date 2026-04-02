@@ -1,24 +1,29 @@
 #include <iostream>
 #include <vector>
-
 using namespace std;
 
-void bubbleSort(vector<int> &arr)
+void insertionSort(vector<int> &arr)
 {
     int n = arr.size();
-    for (int i = 0; i < n; i++)
+
+    for (int i = 1; i < n; i++)
     {
-        for (int j = 0; j < n - i-1; j++)
+        int key = arr[i]; // element to insert
+        int j = i - 1;
+
+        // shift elements greater than key
+        while (j >= 0 && arr[j] > key)
         {
-            if (arr[j] > arr[j + 1])
-            {
-                swap(arr[j], arr[j + 1]);
-            }
+            arr[j + 1] = arr[j];
+            j--;
         }
+
+        // place key at correct position
+        arr[j + 1] = key;
     }
 }
 
-void printResult(vector<int> &arr)
+void printResult(const vector<int> &arr)
 {
     for (int val : arr)
     {
@@ -28,13 +33,10 @@ void printResult(vector<int> &arr)
 
 int main()
 {
-vector<int> arr = {43, 7, 91, 15, 62, 38, 74, 5, 29, 83, 11, 57, 66, 3, 48, 20, 95, 34, 72, 19};
-    bubbleSort(arr);
+    vector<int> arr = {4, 3, 2, 5, 1};
+
+    insertionSort(arr);
     printResult(arr);
 
     return 0;
 }
-
-
-//claude visulization
-// https://claude.ai/share/b0e399ec-26ff-4d91-93a9-247395f362f8
