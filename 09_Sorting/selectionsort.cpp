@@ -1,9 +1,12 @@
 #include <iostream>
+#include <vector>
+
 using namespace std;
 
-void selectionsort(int arr[], int n)
+void selectionSort(vector<int> &arr)
 {
-    for (int i = 0; i < n - 1; i++)
+    int n = arr.size();
+    for (int i = 0; i < n; i++)
     {
         int minIndex = i;
         for (int j = i + 1; j < n; j++)
@@ -17,24 +20,21 @@ void selectionsort(int arr[], int n)
     }
 }
 
-void printArray(int arr[], int n)
+void printResult(const vector<int> &arr)
 {
-    for (int i = 0; i < n; i++)
+    for (int val : arr)
     {
-        cout << arr[i] << " ";
+        cout << val << " ";
     }
-    cout << endl;
 }
 
 int main()
 {
 
-    int n = 5;
-    int arr[] = {5, 4, 3, 2, 1};
+    vector<int> arr = {10,5,6,7,9,1,4,8,2,3};
 
-    selectionsort(arr, n);
-
-    printArray(arr, n);
+    selectionSort(arr);
+    printResult(arr);
 
     return 0;
 }
