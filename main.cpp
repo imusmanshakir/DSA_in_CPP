@@ -15,7 +15,7 @@ void insertionSort(vector<int> &arr)
         while (j >= 0 && arr[j] > key)
         {
             arr[j + 1] = arr[j];
-            j--;
+            // j--;
         }
 
         // place key at correct position
