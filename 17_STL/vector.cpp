@@ -49,7 +49,7 @@ int main()
     cout << endl;
 
     vector<int> last(a);
-    cout << "Vector copied from a instead of created " << endl;
+    cout << "Vector copied from a instead of creating " << endl;
     for (int i : last)
     {
         cout << i << " ";
