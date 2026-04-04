@@ -16,8 +16,8 @@ int main()
 
     cout << "Element At 2nd Index " << a.at(2) << endl;
     cout << "Is empty " << a.empty() << endl;
-    cout <<  a.front() << endl;
-    cout << a.back() << endl;
+    cout <<"Element at front "<<  a.front() << endl;
+    cout <<"Element at back "<< a.back() << endl;
 
     return 0;
 }
