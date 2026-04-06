@@ -15,6 +15,15 @@ int main()
     maxHeap.push(200);
     maxHeap.push(300);
 
+    priority_queue<int, vector<int>, greater<int>> temp(minHeap);
+
+    cout << "While Loop: ";
+    while (!temp.empty())
+    {
+        cout << temp.top() << " ";
+        temp.pop();
+    }
+    cout << endl;
     cout << "Min element: " << minHeap.top() << endl;
 
     minHeap.pop();
