@@ -29,4 +29,4 @@ int main()
 
 // ✔ Always returns strictly greater element
 // ✔ Skips all occurrences of the value
-// upper bound simply returns greater value than the value we are looking for
+// ✔ upper bound simply returns greater value than the value we are looking for
