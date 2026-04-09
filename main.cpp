@@ -3,37 +3,32 @@
 #include <queue>
 using namespace std;
 
+void moveZeroes(vector<int> &nums)
+{
+    int j = 0;
+    for (int i = 0; i < nums.size(); i++)
+    {
+        if (nums[i] != 0)
+        {
+            nums[j] = nums[i];
+            j++;
+        }
+    }
+
+    while (j < nums.size())
+    {
+        nums[j] = 0;
+        j++;
+    }
+}
+
 int main()
 {
-    priority_queue<int, vector<int>, greater<int>> minHeap;
-    priority_queue<int, vector<int>, less<int>> maxHeap;
-
-    minHeap.push(100);
-    minHeap.push(200);
-    minHeap.push(300);
-    maxHeap.push(100);
-    maxHeap.push(200);
-    maxHeap.push(300);
-
-    priority_queue<int, vector<int>, greater<int>> temp(minHeap);
-
-    cout << "While Loop: ";
-    while (!temp.empty())
+    vector<int> nums = {1, 2, 0, 4, 5, 0, 6, 7};
+    moveZeroes(nums);
+    for (int i : nums)
     {
-        cout << temp.top() << " ";
-        temp.pop();
+        cout << i << " ";
     }
-    cout << endl;
-    cout << "Min element: " << minHeap.top() << endl;
-
-    minHeap.pop();
-
-    cout << "After poping now Min element is: " << minHeap.top() << endl;
-    cout << "Max element: " << maxHeap.top() << endl;
-
-    maxHeap.pop();
-
-    cout << "After poping now Max element is: " << maxHeap.top() << endl;
-
     return 0;
 }
