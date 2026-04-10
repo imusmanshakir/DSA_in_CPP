@@ -1,37 +1,39 @@
 #include <iostream>
+#include <vector>
 using namespace std;
-
-bool linearsearch(int mat[][3], int rows, int cols, int key)
+void merge(vector<int> &nums1, int m, vector<int> &nums2, int n)
 {
-    for (int i = 0; i < rows; i++)
+    int i = m - 1;
+    int j = n - 1;
+    int k = m + n - 1;
+    while (i >= 0 && j >= 0)
     {
-        for (int j = 0; j < cols; j++)
+        if (nums1[i] > nums2[j])
         {
-            if (mat[i][j] == key)
-            {
-                cout << "Element "<< key <<" found at index: " << i << ", " << j << endl;
-                return true;
-            }
+            nums1[k--] = nums1[i--];
+        }
+        else
+        {
+            nums1[k--] = nums2[j--];
         }
     }
-    cout << "Element not found" << endl;
-    return false;
+    while (j >= 0)
+    {
+        nums1[k--] = nums2[j--];
+    }
 }
 
 int main()
 {
-
-    int matrix[4][3] =
-        {
-            {1, 2, 3},
-            {4, 5, 6},
-            {7, 8, 9},
-            {10, 11, 12}};
-
-    int rows = 4;
-    int cols = 3;
-
-    linearsearch(matrix, rows, cols, 12);
+    vector<int> nums1 = {3, 3, 3, 0, 0, 0};
+    vector<int> nums2 = {4, 5, 6};
+    int m = 3;
+    int n = 3;
+    merge(nums1, m, nums2, n);
+    for (int n : nums1)
+    {
+        cout << n << " ";
+    }
 
     return 0;
 }

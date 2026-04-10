@@ -40,3 +40,6 @@ int main()
         cout << n << " ";
     // Output: 1 2 2 3 5 6
 }
+
+// AI Visulization step by step
+// https://chatgpt.com/share/69d8e7ed-d65c-83a4-a9c0-e5cbeef0a95b
