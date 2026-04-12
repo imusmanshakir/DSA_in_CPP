@@ -1,41 +1,41 @@
 #include <iostream>
-#include <string>
-#include <cctype>
+
 using namespace std;
 
-bool isPalindrome(const string& s) {
+bool checkPalindrome(string str)
+{
     int left = 0;
-    int right = s.length() - 1;
-    
-    while (left < right) {
-        while (left < right && !isalnum(static_cast<unsigned char>(s[left]))) {
-            left++;
+    int right = str.length() - 1L;
+    while (left < right)
+    {
+        if (str[left] != str[right])
+        {
+            return false;
         }
-        while (left < right && !isalnum(static_cast<unsigned char>(s[right]))) {
-            right--;
-        }
-        if (left < right) {
-            if (tolower(static_cast<unsigned char>(s[left])) != tolower(static_cast<unsigned char>(s[right]))) {
-                return false;
-            }
+        else
+        {
             left++;
             right--;
         }
     }
+
     return true;
 }
 
-int main() {
-    string s = {"Was it a car or a cat I saw?"};
-    isPalindrome(s) ? cout << "Yes" << endl : cout << "No" << endl;
-    // cout << "Enter a string: ";
-    // getline(cin, s);
-    
-    // if (isPalindrome(s)) {
-    //     cout << "Yes" << endl;
-    // } else {
-    //     cout << "No" << endl;
-    // }
-    
+int main()
+{
+    string str;
+    cout << "Enter string to check if it is a string " << endl;
+    cin >> str;
+    char result = checkPalindrome(str);
+    if (result)
+    {
+        cout << "True " << endl;
+    }
+    else
+    {
+        cout << "False " << endl;
+    }
+
     return 0;
 }
