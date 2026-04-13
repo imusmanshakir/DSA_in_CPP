@@ -1,37 +1,58 @@
 #include <iostream>
 using namespace std;
 
-bool linearsearch(int mat[][3], int rows, int cols, int key)
+int isPresent(int arr[][4], int target, int rows, int columns)
 {
+
     for (int i = 0; i < rows; i++)
     {
-        for (int j = 0; j < cols; j++)
+        for (int j = 0; j < columns; j++)
         {
-            if (mat[i][j] == key)
+            if (arr[i][j] == target)
             {
-                cout << "Element " << key << " found at index: " << i << ", " << j << endl;
-                return true;
+                cout << "Found at " << i << ", " << j << endl;
+                return 1;
             }
         }
     }
-    cout << "Element not found" << endl;
-    return false;
+    return 0;
 }
 
 int main()
 {
 
-    int matrix[4][3] =
+    int arr[3][4] = {
+        {1, 2, 3, 4},
+        {4, 5, 6, 7},
+        {7, 8, 9, 0},
+
+    };
+
+    cout << "Here is your 2D Array: " << endl;
+    for (int i = 0; i < 3; i++)
+    {
+        for (int j = 0; j < 4; j++)
         {
-            {1, 2, 3},
-            {4, 5, 6},
-            {7, 8, 9},
-            {10, 11, 12}};
+            cout << arr[i][j] << " ";
+        }
+        cout << endl;
+    }
 
-    int rows = 4;
-    int cols = 3;
-
-    linearsearch(matrix, rows, cols, 12);
+    cout << "Enter the element you are looking for? " << endl;
+    int target;
+    cin >> target;
+    int result = isPresent(arr, target, 3, 4);
+    if (result)
+    {
+        cout << target << " Exist in your 2D Array " << endl;
+    }
+    else
+    {
+        cout << "Did not found " << endl;
+    }
 
     return 0;
 }
+
+// Why do we need to specify the column size when passing a 2D array as a parameter?
+//  https://stackoverflow.com/questions/12813494/why-do-we-need-to-specify-the-column-size-when-passing-a-2d-array-as-a-parameter
