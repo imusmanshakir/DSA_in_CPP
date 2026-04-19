@@ -3,13 +3,10 @@ using namespace std;
 
 int main()
 {
-    int x = 10;
-
-    int *ptr = new int(100);
-
-    delete ptr;
-    // delete ptr;
-    // delete x;
+    char ch[10] = "abcde";
+    char ch1[5] = {'a', 'b', 'c', 'd', '\0'};
+    cout << ch << endl;
+    cout << ch1 << endl;
 
     return 0;
 }
