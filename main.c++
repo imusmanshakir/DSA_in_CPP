@@ -1,12 +1,22 @@
 #include <iostream>
 using namespace std;
 
+int update(int n)
+{
+    n++;
+    return n;
+}
+
+int& update1(int& n)
+{
+    n++;
+    return n;
+}
+
 int main()
 {
-    char ch[10] = "abcde";
-    char ch1[5] = {'a', 'b', 'c', 'd', '\0'};
-    cout << ch << endl;
-    cout << ch1 << endl;
-
+    int n = 5;
+    cout << update(n) << endl;
+    cout << update1(n) << endl;
     return 0;
 }
