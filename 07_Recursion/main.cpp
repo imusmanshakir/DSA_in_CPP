@@ -1,19 +1,16 @@
 #include <iostream>
 using namespace std;
 
-int factorial(int n)
+void countDown(int n)
 {
-    if (n == 0)
-    {
 
-        return 1; // Base case: if n is 0, stop recursion
-    }
+    cout << "Print somethng while stack overflow happens " << endl;
 
-    return n * factorial(n - 1);
+    countDown(n - 1);
 }
 
 int main()
 {
-    cout << factorial(4);
+    countDown(4);
     return 0;
 }

@@ -3,17 +3,18 @@ using namespace std;
 
 int factorial(int n)
 {
-    if (n == 0)
-    {
-
-        return 1; // Base case: if n is 0, stop recursion
+    if (n <= 1)
+    { // Base case: factorial of 0 or 1 is 1
+        return 1;
     }
-
-    return n * factorial(n - 1);// factorial again calling itself again and again
+    return n * factorial(n - 1); // Recursive step: n * (n-1)!
 }
 
 int main()
 {
-    cout << factorial(4);
+    int n;
+    cout << "Enter a number: ";
+    cin >> n;
+    cout << "Factorial is: " << factorial(n) << endl;
     return 0;
 }
