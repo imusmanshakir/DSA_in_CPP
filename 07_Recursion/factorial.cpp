@@ -18,3 +18,6 @@ int main()
     cout << "Factorial is: " << factorial(n) << endl;
     return 0;
 }
+
+// here is claude visualization
+// https://claude.ai/chat/b649eacb-1ec6-47a2-b102-aa8b7468289b
