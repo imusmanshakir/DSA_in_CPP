@@ -117,16 +117,90 @@ void deleteByValue(Node *&head, int val)
     return;
 }
 
-void print(Node *head)
+bool search(Node *head, int val)
 {
     Node *temp = head;
-    cout << "LIST: ";
+    while (temp)
+    {
+        if (temp->data == val)
+        {
+            return true;
+        }
+        temp = temp->next;
+    }
+    return false;
+};
+
+void insertAtK(Node *&head, int val, int pos)
+{
+    if (pos <= 0)
+    {
+        cout << "Invalid Position\n";
+        return;
+    }
+    if (pos == 1)
+    {
+        inserAtHead(head, val);
+        return;
+    }
+    Node *newNode = new Node(val);
+    Node *temp = head;
+    int currentPos = 1;
+    while (temp && currentPos < pos - 1)
+    {
+        temp = temp->next;
+        currentPos++;
+    }
+
+    if (!temp)
+    {
+        cout << "Position out of range\n";
+    }
+    newNode->next = temp->next;
+    newNode->prev = temp;
+    temp->next = newNode;
+    if (newNode->next != nullptr)
+        newNode->next->prev = newNode;
+};
+
+int getLength(Node *head)
+{
+    int count = 0;
+    Node *temp = head;
+    while (temp)
+    {
+        count++;
+        temp = temp->next;
+    }
+    return count;
+};
+
+void print(Node *head)
+{
+    if (!head)
+    {
+        cout << "LIST:Empty\n";
+        return;
+    }
+    Node *temp = head;
+    cout << "Forward:  ";
     while (temp)
     {
         cout << temp->data << " -> ";
         temp = temp->next;
     }
     cout << "\n";
+    temp = head;
+    while (temp->next)
+        temp = temp->next;
+
+    cout << "Backward: ";
+    while (temp)
+    {
+        cout << temp->data << " <- ";
+        temp = temp->prev;
+    }
+    cout << "\n\n";
 }
 
 int main()
@@ -150,6 +224,12 @@ int main()
     print(head);
     cout << "Deleting 40...\n";
     deleteByValue(head, 40);
+    print(head);
+    bool result = search(head, 30);
+    cout << "Searching for 30..." << (result ? "Found" : "Not found") << "\n";
+    cout << "Length of List is: " << getLength(head) << "\n\n";
+    cout << "Inserting 40 at 3...\n";
+    insertAtK(head, 40, 3);
     print(head);
 
     return 0;
