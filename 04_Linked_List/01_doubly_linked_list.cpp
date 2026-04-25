@@ -163,6 +163,33 @@ void insertAtK(Node *&head, int val, int pos)
         newNode->next->prev = newNode;
 };
 
+void reverse(Node *&head)
+{
+    // 0 or 1 node — already the same forward/backward
+    if (!head || !head->next)
+        return;
+
+    Node *temp = head;
+    Node *newHead = nullptr;
+
+    while (temp)
+    {
+        Node *swap = temp->prev;
+        temp->prev = temp->next;
+        temp->next = swap;
+
+        // The node we just processed will become the new head
+        newHead = temp;
+
+        // Move to the next node in the ORIGINAL order.
+        // Because we swapped, the original "next" is now in temp->prev.
+        temp = temp->prev;
+    }
+
+    // Update the head pointer
+    head = newHead;
+}
+
 int getLength(Node *head)
 {
     int count = 0;
@@ -230,6 +257,9 @@ int main()
     cout << "Length of List is: " << getLength(head) << "\n\n";
     cout << "Inserting 40 at 3...\n";
     insertAtK(head, 40, 3);
+    print(head);
+    cout << "Reversing...\n";
+    reverse(head);
     print(head);
 
     return 0;
