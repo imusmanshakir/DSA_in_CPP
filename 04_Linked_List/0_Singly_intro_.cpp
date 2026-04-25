@@ -3,7 +3,7 @@ using namespace std;
 
 struct Node
 {
-    int data = 1;
+    int data;
     Node *next;
 
     Node(int data)
@@ -90,6 +90,36 @@ void deleteByValue(Node *&head, int val)
     delete todelete;
 }
 
+void insertAtK(Node *&head, int val, int pos)
+{
+    if (pos <= 0)
+    {
+        cout << "Invalid Position\n";
+        return;
+    }
+    if (pos == 1)
+    {
+        insertAtHead(head, val);
+        return;
+    }
+    Node *newNode = new Node(val);
+    Node *temp = head;
+    int currentPos = 1;
+    while (temp && currentPos < pos - 1)
+    {
+        temp = temp->next;
+        currentPos++;
+    }
+    if (!temp)
+    {
+        cout << "Position out of range\n";
+        delete newNode;
+        return;
+    }
+    newNode->next = temp->next; // temp->next is currently nullptr (since node 40 was the tail).So newNode->next becomes nullptr.
+    temp->next = newNode;
+};
+
 bool searchValue(Node *head, int val)
 {
     Node *temp = head;
@@ -152,6 +182,9 @@ int main()
     bool found = searchValue(head, 40);
     cout << "Searching for 40: " << (found ? "Found" : "Not found") << endl;
     cout << "Length of list: " << getLength(head) << endl;
+    cout << "Inserting new node...\n";
+    insertAtK(head, 30, 2);
+    print(head);
 
     return 0;
 }
