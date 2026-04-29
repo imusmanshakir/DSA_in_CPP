@@ -264,3 +264,105 @@ int main()
 
     return 0;
 }
+
+// here how swapping is happening in reverse function
+
+/*
+ * REVERSE DOUBLY LINKED LIST – STEP BY STEP TRACE
+ * List: 30 <-> 20 <-> 10
+ * head initially points to 30.
+ */
+
+/* INITIAL STATE
+ *
+ *   head
+ *    ↓
+ *  ┌────────────┐    ┌────────────┐    ┌────────────┐
+ *  │ data: 30   │    │ data: 20   │    │ data: 10   │
+ *  │ prev: NULL │    │ prev: &30  │    │ prev: &20  │
+ *  │ next: &20  │    │ next: &10  │    │ next: NULL │
+ *  └────────────┘    └────────────┘    └────────────┘
+ *       ↑                 ↑                 ↑
+ *     addr 0x100        addr 0x200        addr 0x300
+ */
+
+/* =========================================================================
+ * ITERATION 1  (temp = 0x100, i.e. node 30)
+ * =========================================================================
+ *
+ * 1. swap = temp->prev  (temp->prev = NULL)   → swap = NULL
+ * 2. temp->prev = temp->next ( = &20 )        → 30->prev = &20
+ * 3. temp->next = swap ( = NULL )             → 30->next = NULL
+ * 4. newHead = temp                           → newHead = &30
+ * 5. temp = temp->prev (now &20)             → temp = &20
+ *
+ *   AFTER ITERATION 1:
+ *   ┌────────────┐    ┌────────────┐    ┌────────────┐
+ *   │ data: 30   │    │ data: 20   │    │ data: 10   │
+ *   │ prev: &20  │    │ prev: &30  │    │ prev: &20  │
+ *   │ next: NULL │    │ next: &10  │    │ next: NULL │
+ *   └────────────┘    └────────────┘    └────────────┘
+ *        ↑                 ↑                 ↑
+ *     0x100             0x200             0x300
+ *   (temp moved to 0x200)
+ */
+
+/* =========================================================================
+ * ITERATION 2  (temp = 0x200, i.e. node 20)
+ * =========================================================================
+ *
+ * 1. swap = temp->prev  (temp->prev = &30)   → swap = &30
+ * 2. temp->prev = temp->next ( = &10 )       → 20->prev = &10
+ * 3. temp->next = swap ( = &30 )             → 20->next = &30
+ * 4. newHead = temp                          → newHead = &20
+ * 5. temp = temp->prev (now &10)            → temp = &10
+ *
+ *   AFTER ITERATION 2:
+ *   ┌────────────┐    ┌────────────┐    ┌────────────┐
+ *   │ data: 30   │    │ data: 20   │    │ data: 10   │
+ *   │ prev: &20  │    │ prev: &10  │    │ prev: &20  │
+ *   │ next: NULL │    │ next: &30  │    │ next: NULL │
+ *   └────────────┘    └────────────┘    └────────────┘
+ *        ↑                 ↑                 ↑
+ *     0x100             0x200             0x300
+ *   (temp moved to 0x300)
+ */
+
+/* =========================================================================
+ * ITERATION 3  (temp = 0x300, i.e. node 10)
+ * =========================================================================
+ *
+ * 1. swap = temp->prev  (temp->prev = &20)   → swap = &20
+ * 2. temp->prev = temp->next ( = NULL )      → 10->prev = NULL
+ * 3. temp->next = swap ( = &20 )             → 10->next = &20
+ * 4. newHead = temp                          → newHead = &10
+ * 5. temp = temp->prev (now NULL)           → temp = NULL → loop ends
+ *
+ *   AFTER ITERATION 3:
+ *   ┌────────────┐    ┌────────────┐    ┌────────────┐
+ *   │ data: 30   │    │ data: 20   │    │ data: 10   │
+ *   │ prev: &20  │    │ prev: &10  │    │ prev: NULL │
+ *   │ next: NULL │    │ next: &30  │    │ next: &20  │
+ *   └────────────┘    └────────────┘    └────────────┘
+ *        ↑                 ↑                 ↑
+ *     0x100             0x200             0x300
+ */
+
+/* FINAL STEP: head = newHead ( = &10 )
+ *
+ *    head
+ *     ↓
+ *   ┌────────────┐    ┌────────────┐    ┌────────────┐
+ *   │ data: 10   │    │ data: 20   │    │ data: 30   │
+ *   │ prev: NULL │<───│ prev: &10  │<───│ prev: &20  │
+ *   │ next: &20  │───>│ next: &30  │───>│ next: NULL │
+ *   └────────────┘    └────────────┘    └────────────┘
+ *
+ *   Reversed list: 10 <-> 20 <-> 30
+ */
+/*
+Why temp = temp->prev moves us forward
+This is the most confusing part.
+After swapping, the original next (which points to the next node in the original sequence) is now stored in prev.
+So to continue scanning the original list from left to right, we must follow prev.
+*/
