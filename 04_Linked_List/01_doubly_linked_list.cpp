@@ -365,4 +365,13 @@ Why temp = temp->prev moves us forward
 This is the most confusing part.
 After swapping, the original next (which points to the next node in the original sequence) is now stored in prev.
 So to continue scanning the original list from left to right, we must follow prev.
+temp = [10]
+swap its prev and next →
+   [10]'s prev = 20   (was next)
+   [10]'s next = null  (was prev)
+   Now the original pointer that took us to the next node (20) lives in temp->prev.
+The old next is gone from its usual place; it's now stored as prev.
+So if we want to move to the next node in the original list (20), we must follow temp->prev.
+
+That’s it: after the swap, the “next” pointer of the original direction is now labeled prev.
 */
