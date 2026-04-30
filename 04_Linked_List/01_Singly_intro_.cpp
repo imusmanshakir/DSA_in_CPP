@@ -57,6 +57,7 @@ void deleteAtTail(Node *&head)
     {
         delete head;
         head = nullptr;
+        return;
     }
     Node *temp = head;
     while (temp->next->next)
@@ -120,6 +121,40 @@ void insertAtK(Node *&head, int val, int pos)
     temp->next = newNode;
 };
 
+void reverse(Node *&head)
+{
+    if (!head)
+    {
+        return;
+    }
+    Node *prev = nullptr;
+    Node *curr = head;
+
+    while (curr) // or you can say while(curr != nullptr)
+    {
+        Node *forward = curr->next; // to iterate over linked list.
+        curr->next = prev;          // That line changes arrow direction.Everything else is just:saving nodes,avoiding data loss,moving pointers
+        prev = curr;
+        curr = forward; // assiging new value
+    }
+    head = prev;
+};
+
+Node *reverse1(Node *head)
+{
+    // Base case: empty list or single node
+    if (head == nullptr || head->next == nullptr)
+        return head;
+
+    // Recursive call on the rest of the list
+    Node *newHead = reverse1(head->next);
+
+    // Rewiring step:
+    head->next->next = head; // make the next node point back to current
+    head->next = nullptr;    // current node becomes the new tail
+
+    return newHead; // always return the (unchanged) new head
+}
 bool searchValue(Node *head, int val)
 {
     Node *temp = head;
@@ -156,34 +191,38 @@ void print(Node *head)
         cout << temp->data << " -> ";
         temp = temp->next;
     }
-    cout << endl;
+    cout << "\n\n";
 }
 
 int main()
 {
     Node *head = nullptr;
-    cout << "Inserting values at head:" << endl;
+    cout << "Inserting values at head:\n";
     insertAtHead(head, 40);
     insertAtHead(head, 30);
     insertAtHead(head, 20);
     insertAtHead(head, 10);
     print(head);
-    cout << "Inserting at tail and then removing:" << endl;
+    cout << "Inserting at tail and then removing:\n";
     insertAtTail(head, 50);
     print(head);
     deleteAtTail(head);
     print(head);
-    cout << "Removing head:" << endl;
+    cout << "Removing head:\n";
     deleteHead(head);
     print(head);
-    cout << "Deleting by value 30:" << endl;
+    cout << "Deleting by value 30:\n";
     deleteByValue(head, 30);
     print(head);
     bool found = searchValue(head, 40);
     cout << "Searching for 40: " << (found ? "Found" : "Not found") << endl;
-    cout << "Length of list: " << getLength(head) << endl;
+    cout << "Length of list:" << getLength(head) << endl;
     cout << "Inserting new node...\n";
     insertAtK(head, 30, 2);
+    print(head);
+    cout << "Reversing...\n";
+    reverse(head);
+    head = reverse1(head);
     print(head);
 
     return 0;
