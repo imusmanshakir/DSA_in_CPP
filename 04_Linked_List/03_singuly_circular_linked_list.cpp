@@ -155,6 +155,68 @@ bool search(Node *head, int val)
     return false;
 }
 
+void insertAtK(Node *&head, int val, int pos)
+{
+    cout << "Inserting " << val << " at Position " << pos << "...\n";
+    if (pos <= 0)
+    {
+        cout << "Inavalid Position\n";
+        return;
+    }
+    if (pos == 1 || head == nullptr)
+    {
+        insertAtHead(head, val);
+        return;
+    }
+    int currentPos = 1;
+    Node *prev = head;
+    while (currentPos < pos - 1 && prev != head)
+    {
+        prev = prev->next;
+        currentPos++;
+    }
+    // Now prev is the node after which we insert.
+    // If we reached the tail before count == k-1, prev is the tail.
+    // That's perfectly fine – insert after tail.
+    Node *newNode = new Node(val);
+    newNode->next = prev->next;
+    prev->next = newNode;
+};
+
+void reverse(Node *&head)
+{
+    if (!head || head->next == head)
+        return;
+
+    Node *oldHead = head;
+    Node *prev = nullptr;
+    Node *curr = head;
+    Node *next = nullptr;
+
+    do
+    {
+        next = curr->next;
+        curr->next = prev;
+        prev = curr;
+        curr = next;
+    } while (curr != oldHead);
+
+    head = prev;
+    oldHead->next = head;
+}
+
+int getLength(Node *head)
+{
+    Node *temp = head;
+    int count = 0;
+    do
+    {
+        count++;
+        temp = temp->next;
+    } while (temp != head);
+    return count;
+}
+
 void print(Node *head)
 {
     if (!head)
@@ -178,19 +240,29 @@ int main()
     insertAtHead(head, 20);
     insertAtHead(head, 10);
     print(head);
-    cout << "Inserting at tail:\n";
+    cout << "\nInserting at tail:\n";
     insertAtTail(head, 60);
     print(head);
     deleteHead(head);
-    cout << "Removing head...\n";
+    cout << "\nRemoving head...\n";
     print(head);
-    cout << "Removing tail...\n";
+    cout << "\nRemoving tail...\n";
     deleteTail(head);
     print(head);
+    cout << "\n";
     deleteByValue(head, 100);
     print(head);
+    cout << "\n";
     bool result = search(head, 70);
     cout << (result ? "Found" : "Not Found\n");
+    cout << "\n";
+    insertAtK(head, 100, 1);
+    print(head);
+    cout << "\nReversing...\n";
+    reverse(head);
+    print(head);
+    int length = getLength(head);
+    cout << "\nLength of List is: " << length << endl;
 
     return 0;
 }
