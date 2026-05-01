@@ -83,11 +83,9 @@ void deleteByValue(Node *&head, int val)
         temp = temp->next; // loop ends here
 
     if (!temp->next)
-    {
         return;
-    }
     Node *todelete = temp->next;
-    temp->next = temp->next->next;
+    temp->next = temp->next->next; // bypass node
     delete todelete;
 }
 
