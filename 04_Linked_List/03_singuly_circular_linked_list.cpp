@@ -193,10 +193,11 @@ void reverse(Node *&head)
     Node *curr = head;
     Node *next = nullptr;
 
+    // if you are unable to understand how reversing is happening have a look at this demonstration by gpt: https://chatgpt.com/share/69f61a08-907c-83e8-8917-08137a0776f0
     do
     {
         next = curr->next;
-        curr->next = prev;
+        curr->next = prev; // This is the actual reversing step.We reversed direction of arrow.
         prev = curr;
         curr = next;
     } while (curr != oldHead);
