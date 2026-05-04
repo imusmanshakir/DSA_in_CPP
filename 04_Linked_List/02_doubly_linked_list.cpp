@@ -83,6 +83,7 @@ void deleteTail(Node *&head)
 
 void deleteByValue(Node *&head, int val)
 {
+    cout << "Deleting " << val << "...\n";
     // 1. Empty list – nothing to delete
     if (!head)
         return;
@@ -119,6 +120,7 @@ void deleteByValue(Node *&head, int val)
 
 bool search(Node *head, int val)
 {
+    cout << "Searching for " << val << "...\n";
     Node *temp = head;
     while (temp)
     {
@@ -133,6 +135,7 @@ bool search(Node *head, int val)
 
 void insertAtK(Node *&head, int val, int pos)
 {
+    cout << "Insertin " << val << " At " << pos << "\n";
     if (pos <= 0)
     {
         cout << "Invalid Position\n";
@@ -249,13 +252,11 @@ int main()
     cout << "Removing tail\n";
     deleteTail(head);
     print(head);
-    cout << "Deleting 40...\n";
     deleteByValue(head, 40);
     print(head);
     bool result = search(head, 30);
-    cout << "Searching for 30..." << (result ? "Found" : "Not found") << "\n";
+    cout << (result ? "Found" : "Not found") << "\n";
     cout << "Length of List is: " << getLength(head) << "\n\n";
-    cout << "Inserting 40 at 3...\n";
     insertAtK(head, 40, 3);
     print(head);
     cout << "Reversing...\n";
