@@ -14,7 +14,6 @@ struct Node
         prev = nullptr;
     }
 };
-
 void insertAtHead(Node *&head, int val)
 {
     Node *newNode = new Node(val);
@@ -48,6 +47,105 @@ void insertAtTail(Node *&head, int val)
     newNode->prev = tail;
     newNode->next = head;
     head->prev = newNode;
+};
+
+void deleteHead(Node *&head)
+{
+    if (head == nullptr)
+        return;
+    if (head->next == head)
+    {
+        delete head;
+        head = nullptr;
+        return;
+    }
+    Node *oldHead = head;
+    Node *tail = oldHead->prev;
+    head = head->next;
+    tail->next = head;
+    head->prev = tail;
+    delete oldHead;
+};
+
+void deleteTail(Node *&head)
+{
+    if (!head)
+        return;
+    if (head->next == head)
+    {
+        delete head;
+        head = nullptr;
+        return;
+    }
+
+    Node *oldTail = head->prev;
+    Node *secondLastTail = oldTail->prev;
+    secondLastTail->next = head;
+    head->prev = secondLastTail;
+    delete oldTail;
+};
+
+void deleteByValue(Node *&head, int val)
+{
+    cout << "Deleting... " << val << "\n";
+    if (!head)
+        return;
+    // if only head exists
+    if (head->next == head && head->data == val)
+    {
+
+        delete head;
+        head = nullptr;
+        return;
+    }
+
+    // First, check if the head itself is the node to delete
+    if (head->data == val)
+    {
+        Node *tail = head->prev;
+        Node *newHead = head->next;
+        tail->next = newHead;
+        newHead->prev = tail;
+        delete head;
+        head = newHead;
+        return;
+    }
+
+    // Otherwise, search for the value starting from the second node
+    Node *curr = head->next;
+    while (curr != head)
+    {
+        if (curr->data == val)
+        {
+            Node *prevNode = curr->prev;
+            Node *nextNode = curr->next;
+            prevNode->next = nextNode;
+            nextNode->prev = prevNode;
+            delete curr;
+            return;
+        }
+        curr = curr->next;
+    }
+};
+
+bool search(Node *head, int val)
+{
+    cout << "Searching for " << val << "...\n";
+    Node *curr = head;
+    do
+    {
+        if (curr->data == val)
+        {
+            return true;
+        }
+        curr = curr->next;
+    } while (curr != head);
+    return false;
+};
+
+void insertAtK(Node *&head, int val, int pos)
+{
+    cout << "Inserting " << val << " at Position " << pos << "...\n";
 };
 
 void print(Node *head)
@@ -92,6 +190,16 @@ int main()
     insertAtTail(head, 50);
     insertAtTail(head, 60);
     print(head);
+    cout << "Deleting head...\n";
+    deleteHead(head);
+    print(head);
+    cout << "Deleting tail...\n";
+    deleteTail(head);
+    print(head);
+    deleteByValue(head, 20);
+    print(head);
+    bool result = search(head, 40);
+    cout << (result ? "Found\n" : "Not found\n");
 
     return 0;
 }
