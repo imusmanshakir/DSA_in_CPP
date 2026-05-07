@@ -146,6 +146,64 @@ bool search(Node *head, int val)
 void insertAtK(Node *&head, int val, int pos)
 {
     cout << "Inserting " << val << " at Position " << pos << "...\n";
+    if (pos <= 0)
+    {
+        cout << "oops! Invalid Position.\n";
+        return;
+    }
+    if (pos == 1)
+    {
+        insertAtHead(head, val);
+        return;
+    }
+    int currentPos = 1;
+    Node *curr = head;
+    while (currentPos < pos - 1 && curr->next != head)
+    {
+        curr = curr->next;
+        currentPos++;
+    }
+    Node *newNode = new Node(val);
+    Node *nextNode = curr->next;
+    newNode->next = nextNode;
+    newNode->prev = curr;
+    nextNode->prev = newNode;
+    curr->next = newNode;
+};
+
+void reverse(Node *&head)
+{
+    if (!head || head->next == head)
+        return;
+
+    // The old tail will become the new head after reversal
+    Node *newHead = head->prev;
+    Node *curr = head;
+    do
+    {
+        Node *nextNode = curr->next;
+        // now swap the two pointers
+        curr->next = curr->prev;
+        curr->prev = nextNode;
+        curr = nextNode;
+    } while (curr != head);
+    head = newHead;
+}
+
+int getLength(Node *head)
+{
+    if (!head)
+    {
+        return 0;
+    }
+    Node *curr = head;
+    int count = 0;
+    do
+    {
+        count++;
+        curr = curr->next;
+    } while (curr != head);
+    return count;
 };
 
 void print(Node *head)
@@ -199,7 +257,14 @@ int main()
     deleteByValue(head, 20);
     print(head);
     bool result = search(head, 40);
-    cout << (result ? "Found\n" : "Not found\n");
+    cout << (result ? "Found\n" : "Not found\n") << endl;
+    insertAtK(head, 100, 3);
+    print(head);
+    cout << "\nReversing...\n";
+    reverse(head);
+    print(head);
+    int length = getLength(head);
+    cout << "Length of List is: " << length << endl;
 
     return 0;
 }
