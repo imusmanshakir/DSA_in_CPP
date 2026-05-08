@@ -119,6 +119,7 @@ void insertAtK(Node *&head, int val, int pos)
     temp->next = newNode;
 };
 
+// understands what is happening behind the scene: https://www.kimi.com/share/19e08c54-78e2-8975-8000-0000a88a3d97
 void reverse(Node *&head)
 {
     if (!head)
@@ -130,10 +131,10 @@ void reverse(Node *&head)
 
     while (curr) // or you can say while(curr != nullptr)
     {
-        Node *forward = curr->next; // to iterate over linked list.
-        curr->next = prev;          // That line changes arrow direction.Everything else is just:saving nodes,avoiding data loss,moving pointers
+        Node *nextNode = curr->next; // to iterate over linked list.
+        curr->next = prev;           // That line changes arrow direction.Everything else is just:saving nodes,avoiding data loss,moving pointers
         prev = curr;
-        curr = forward; // assiging new value
+        curr = nextNode; // assiging new value
     }
     head = prev;
 };
@@ -220,7 +221,6 @@ int main()
     print(head);
     cout << "Reversing...\n";
     reverse(head);
-    head = reverse1(head);
     print(head);
 
     return 0;
