@@ -206,6 +206,23 @@ int getLength(Node *head)
     return count;
 };
 
+Node *findMiddle(Node *head)
+{
+    if (!head)
+        return nullptr;
+
+    Node *front = head;
+    Node *back = head->prev;
+
+    while (front != back && front->next != back)
+    {
+        front = front->next;
+        back = back->prev;
+    }
+
+    return front;
+}
+
 void print(Node *head)
 {
     if (!head)
@@ -265,6 +282,8 @@ int main()
     print(head);
     int length = getLength(head);
     cout << "Length of List is: " << length << endl;
+    Node *middle = findMiddle(head);
+    cout << "\nmiddle is " << middle->data << endl;
 
     return 0;
 }
