@@ -14,6 +14,7 @@ public:
     }
 };
 
+// Insert at end
 void insertAtEnd(Node *&head, int val)
 {
 
@@ -35,47 +36,52 @@ void insertAtEnd(Node *&head, int val)
     temp->next = newNode;
 }
 
+// Print list
 void printList(Node *head)
 {
 
     while (head != nullptr)
     {
-        cout << head->data << " ";
+        cout << head->data << " -> ";
         head = head->next;
     }
 
-    cout << endl;
+    cout << "NULL\n";
 }
 
-// Remove duplicates
-void removeDuplicates(Node *head)
+Node *cloneList(Node *head)
 {
 
+    // Empty list
     if (head == nullptr)
-        return;
+        return nullptr;
 
-    Node *curr = head;
+    Node *cloneHead = nullptr;
+    Node *cloneTail = nullptr;
 
-    while (curr != nullptr && curr->next != nullptr)
+    Node *temp = head;
+
+    while (temp != nullptr)
     {
 
-        // Duplicate found
-        if (curr->data == curr->next->data)
+        // Create new node
+        Node *newNode = new Node(temp->data);
+
+        // First node
+        if (cloneHead == nullptr)
         {
-
-            Node *duplicate = curr->next;
-
-            // Skip duplicate node
-            curr->next = curr->next->next;
-
-            delete duplicate;
+            cloneHead = cloneTail = newNode;
         }
         else
         {
-            // Move forward only if no duplicate
-            curr = curr->next;
+            cloneTail->next = newNode;
+            cloneTail = newNode;
         }
+
+        temp = temp->next;
     }
+
+    return cloneHead;
 }
 
 int main()
@@ -84,21 +90,20 @@ int main()
     Node *head = nullptr;
 
     insertAtEnd(head, 1);
-    insertAtEnd(head, 1);
     insertAtEnd(head, 2);
     insertAtEnd(head, 3);
-    insertAtEnd(head, 3);
-    insertAtEnd(head, 4);
-    insertAtEnd(head, 4);
     insertAtEnd(head, 4);
 
     cout << "Original List:\n";
     printList(head);
 
-    removeDuplicates(head);
+    Node *clonedList = cloneList(head);
 
-    cout << "After Removing Duplicates:\n";
-    printList(head);
+    cout << "Cloned List:\n";
+    printList(clonedList);
 
     return 0;
 }
+
+//For step by step guide
+// https://www.kimi.com/share/19e1b0c2-3452-83b4-8000-0000befdf6d6

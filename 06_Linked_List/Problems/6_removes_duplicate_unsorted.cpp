@@ -35,6 +35,7 @@ void insertAtEnd(Node *&head, int val)
     temp->next = newNode;
 }
 
+// Print list
 void printList(Node *head)
 {
 
@@ -47,34 +48,43 @@ void printList(Node *head)
     cout << endl;
 }
 
-// Remove duplicates
 void removeDuplicates(Node *head)
 {
 
-    if (head == nullptr)
-        return;
-
     Node *curr = head;
 
-    while (curr != nullptr && curr->next != nullptr)
+    // Pick one node at a time
+    while (curr != nullptr)
     {
 
-        // Duplicate found
-        if (curr->data == curr->next->data)
+        Node *prev = curr;
+        Node *temp = curr->next;
+
+        // Check remaining list
+        while (temp != nullptr)
         {
 
-            Node *duplicate = curr->next;
+            // Duplicate found
+            if (curr->data == temp->data)
+            {
 
-            // Skip duplicate node
-            curr->next = curr->next->next;
+                prev->next = temp->next;
 
-            delete duplicate;
+                Node *duplicate = temp;
+
+                temp = temp->next;
+
+                delete duplicate;
+            }
+            else
+            {
+
+                prev = temp;
+                temp = temp->next;
+            }
         }
-        else
-        {
-            // Move forward only if no duplicate
-            curr = curr->next;
-        }
+
+        curr = curr->next;
     }
 }
 
@@ -84,13 +94,12 @@ int main()
     Node *head = nullptr;
 
     insertAtEnd(head, 1);
-    insertAtEnd(head, 1);
+    insertAtEnd(head, 3);
     insertAtEnd(head, 2);
+    insertAtEnd(head, 1);
+    insertAtEnd(head, 4);
     insertAtEnd(head, 3);
-    insertAtEnd(head, 3);
-    insertAtEnd(head, 4);
-    insertAtEnd(head, 4);
-    insertAtEnd(head, 4);
+    insertAtEnd(head, 2);
 
     cout << "Original List:\n";
     printList(head);
@@ -102,3 +111,5 @@ int main()
 
     return 0;
 }
+
+// https://www.kimi.com/share/19e1b066-28d2-808f-8000-0000625ce096

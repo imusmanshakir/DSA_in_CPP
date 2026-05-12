@@ -14,13 +14,11 @@ public:
     }
 };
 
-// Insert at end
 void insertAtEnd(Node *&head, int val)
 {
 
     Node *newNode = new Node(val);
 
-    // Empty list
     if (head == nullptr)
     {
         head = newNode;
@@ -37,7 +35,6 @@ void insertAtEnd(Node *&head, int val)
     temp->next = newNode;
 }
 
-// Print linked list
 void printList(Node *head)
 {
 
@@ -52,11 +49,9 @@ void printList(Node *head)
     cout << endl;
 }
 
-// Merge two sorted linked lists
 Node *merge(Node *head1, Node *head2)
 {
 
-    // If one list is empty
     if (head1 == nullptr)
         return head2;
     if (head2 == nullptr)
