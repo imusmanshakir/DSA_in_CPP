@@ -1,15 +1,32 @@
-// Master these 5 things:
+/*
 
-// Insert
-// Access
-// Frequency counting
-// find()
-// Traversing hashmap
+Master these 5 things:
 
-// Once comfortable, then:
+Insert
+Access
+Frequency counting
+find()
+Traversing hashmap
 
-// collisions
-// hashing
-// load factor
-// custom hashing
-// sets vs maps
+Once comfortable, then:
+
+collisions
+hashing
+load factor
+custom hashing
+sets vs maps
+
+KEY
+ ↓
+Hash Function
+ ↓
+Hash Value (integer)
+ ↓
+Modulo
+ ↓
+Bucket Index
+ ↓
+Store/Search Data
+
+
+*/
