@@ -21,3 +21,4 @@ int main()
 
 // here is claude visualization
 // https://claude.ai/chat/b649eacb-1ec6-47a2-b102-aa8b7468289b
+// www.kimi.com/share/19e5acd5-0a12-8e45-8000-0000537465cf
