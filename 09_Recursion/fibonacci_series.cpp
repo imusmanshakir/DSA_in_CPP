@@ -9,13 +9,13 @@ int feb(int n)
         return n;
     }
 
-    return feb(n - 1) + feb(n - 2);
+    return feb(n - 1) + feb(n - 2);  //under the hood recursion tree is made. like for three recursion will call 2 and one and 2 will call 0 amd 1
 }
 
 int main()
 {
 
-    cout << feb(10) << endl;
+    cout << feb(2) << endl; 
     return 0;
 }
 
