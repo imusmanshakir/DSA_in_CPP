@@ -14,7 +14,7 @@ struct Node
         right = NULL;
     }
 };
-// print
+
 void inorder(Node *root) // Inorder Traversal (Left → Root → Right)
 {
     if (root == NULL)
@@ -22,7 +22,6 @@ void inorder(Node *root) // Inorder Traversal (Left → Root → Right)
     inorder(root->left);
     cout << root->data << " ";
     inorder(root->right);
-    cout << endl;
 }
 
 void preorder(Node *root) // Preorder (Root → Left → Right)
@@ -32,7 +31,6 @@ void preorder(Node *root) // Preorder (Root → Left → Right)
     cout << root->data << " ";
     preorder(root->left);
     preorder(root->right);
-    cout << endl;
 }
 
 void postorder(Node *root) // Postorder (Left → Right → Root)
@@ -42,7 +40,6 @@ void postorder(Node *root) // Postorder (Left → Right → Root)
     postorder(root->left);
     postorder(root->right);
     cout << root->data << " ";
-    cout << endl;
 }
 
 int main()
@@ -50,12 +47,22 @@ int main()
     Node *root = new Node(1);
     root->left = new Node(2);
     root->right = new Node(3);
-    cout << "in-order traversal\n";
+
+    cout << "in-order: ";
     inorder(root);
-    cout << "pre-order traversal\n";
+    cout << endl;
+
+    cout << "pre-order: ";
     preorder(root);
-    cout << "post-order traversal\n";
+    cout << endl;
+
+    cout << "post-order: ";
     postorder(root);
+    cout << endl;
 
     return 0;
 }
+
+/*
+This will not traverse. It will only print last element. Recursion winds up but i did not unwind it. It is just introductory lecture.
+*/
