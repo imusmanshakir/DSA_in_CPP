@@ -28,7 +28,7 @@ Node *buildTree(vector<int> &preorder)
 
     Node *root = new Node(preorder[idx]);
 
-    root->left = buildTree(preorder);
+    root->left  = buildTree(preorder);
     root->right = buildTree(preorder);
 
     return root;
@@ -46,3 +46,6 @@ int main()
 
     return 0;
 }
+
+// for step by step guide follow this link:
+// https://www.kimi.com/share/19eeef53-1742-8936-8000-0000f8773347
