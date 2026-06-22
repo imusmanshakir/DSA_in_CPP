@@ -1,68 +1,48 @@
 #include <iostream>
+#include <vector>
+
 using namespace std;
 
-struct Node
+class Node
 {
+public:
     int data;
     Node *left;
     Node *right;
 
-    Node(int value)
+    Node(int val)
     {
-        data = value;
-        left = NULL;
-        right = NULL;
+        data = val;
+        left = right = nullptr;
     }
 };
 
-void inorder(Node *root) // Inorder Traversal (Left → Root → Right)
-{
-    if (root == NULL)
-        return;
-    inorder(root->left);
-    cout << root->data << " ";
-    inorder(root->right);
-}
+static int idx = -1;
 
-void preorder(Node *root) // Preorder (Root → Left → Right)
+Node *buildTree(vector<int> &preorder)
 {
-    if (root == NULL)
-        return;
-    cout << root->data << " ";
-    preorder(root->left);
-    preorder(root->right);
-}
+    idx++;
 
-void postorder(Node *root) // Postorder (Left → Right → Root)
-{
-    if (root == NULL)
-        return;
-    postorder(root->left);
-    postorder(root->right);
-    cout << root->data << " ";
+    if (preorder[idx] == -1)
+        return nullptr;
+
+    Node *root = new Node(preorder[idx]);
+
+    root->left = buildTree(preorder);
+    root->right = buildTree(preorder);
+
+    return root;
 }
 
 int main()
 {
-    Node *root = new Node(1);
-    root->left = new Node(2);
-    root->right = new Node(3);
+    vector<int> preorder = {1, 2, -1, -1, 3, 4, -1, -1, 5, -1, -1};
 
-    cout << "in-order: ";
-    inorder(root);
-    cout << endl;
+    Node *root = buildTree(preorder);
 
-    cout << "pre-order: ";
-    preorder(root);
-    cout << endl;
-
-    cout << "post-order: ";
-    postorder(root);
-    cout << endl;
+    cout << root->data << endl;
+    cout << root->left->data << endl;
+    cout << root->right->data << endl;
 
     return 0;
 }
-
-/*
-This will not traverse. It will only print last element. Recursion winds up but i did not unwind it. It is just introductory lecture.
-*/
