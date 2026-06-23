@@ -64,7 +64,8 @@ int main()
 }
 
 /*
-This will not traverse. It will only print last element. Recursion winds up but i did not unwind it. It is just introductory lecture.
+This will not traverse. It will only print last element. Recursion winds up but it did not unwind it. It is a just introductory lecture.
 */
 
-// Kimi visualization:    //www.kimi.com/share/19e8760a-7ff2-8687-8000-000043382560
+// For step by step guide follow this link:
+// https://www.kimi.com/share/19e8760a-7ff2-8687-8000-000043382560
