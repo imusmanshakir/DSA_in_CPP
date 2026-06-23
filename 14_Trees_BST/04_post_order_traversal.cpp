@@ -52,7 +52,7 @@ int main()
 {
     vector<int> postorder = {1, 2, -1, 3, 4, -1, 5, -1, -1, 6, -1, -1, 7, -1, -1};
     Node *root = buildTree(postorder);
-    cout << "Constructed Post-Order Tree is: ";
+    cout << "Constructed Post-Order Tree is: \n";
     printpostOrder(root);
     cout << endl;
     deleteNode(root); // cleanup memory
