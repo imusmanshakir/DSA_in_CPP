@@ -40,13 +40,25 @@ void levelOrder(Node *root)
 
     queue<Node *> q;
     q.push(root);
-
+    q.push(nullptr);
     while (!q.empty())
     {
         Node *curr = q.front();
         q.pop();
+        if (curr == nullptr)
+        {
+            if (!q.empty())
+            {
+                cout << endl;
+                q.push(nullptr);
+                continue;
+            }
+            else
+            {
+                break;
+            }
+        }
         cout << curr->data << " ";
-
         if (curr->left != nullptr)
             q.push(curr->left);
         if (curr->right != nullptr)
@@ -80,3 +92,4 @@ int main()
 
 // For step by step guide follow this link:
 // https://www.kimi.com/share/19ef4338-abb2-8730-8000-000026d3d045
+// https://www.kimi.com/share/19ef839e-c592-86d7-8000-00001b6dcd67
