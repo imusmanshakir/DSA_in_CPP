@@ -26,17 +26,15 @@ Node *buildTree(vector<int> &preorder)
     Node *root = new Node(preorder[idx]);
     root->left = buildTree(preorder);
     root->right = buildTree(preorder);
-
     return root;
 };
 
-int height(Node *root)
+int countNodes(Node *root)
 {
     if (root == nullptr)
         return 0;
-    int leftHeight = height(root->left);
-    int rightHeight = height(root->right);
-    return 1 + max(leftHeight, rightHeight);
+
+    return countNodes(root->left) + countNodes(root->right) + 1;
 };
 
 int main()
@@ -44,10 +42,10 @@ int main()
     vector<int> preorder = {1, 2, -1, -1, 3, 4, -1, -1, 5, -1, -1};
     Node *root = buildTree(preorder);
 
-    cout << "Height: " << height(root) << endl;
+    cout << "Number of Trees are: " << countNodes(root) << endl;
 
     return 0;
 }
 
 // For step by step guide follow this link:
-// https://www.kimi.com/share/19ef8817-3052-8f18-8000-0000824ac93c
+// https://www.kimi.com/share/19ef8bfd-ff12-8732-8000-0000983d0a62
