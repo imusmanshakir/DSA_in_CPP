@@ -29,13 +29,13 @@ Node *buildTree(vector<int> &preorder)
     return root;
 };
 
-int countNodes(Node *root)
+int sumOfNodes(Node *root)
 {
     if (root == nullptr)
         return 0;
-    int leftNodes = countNodes(root->left);
-    int rightNodes = countNodes(root->right);
-    return 1 + leftNodes + rightNodes;
+    int leftSum = sumOfNodes(root->left);
+    int rightSum = sumOfNodes(root->right);
+    return root->data + leftSum + rightSum;
 };
 
 int main()
@@ -43,10 +43,10 @@ int main()
     vector<int> preorder = {1, 2, -1, -1, 3, 4, -1, -1, 5, -1, -1};
     Node *root = buildTree(preorder);
 
-    cout << "Number of Trees are: " << countNodes(root) << endl;
+    cout << "Sum of Tree is: " << sumOfNodes(root) << endl;
 
     return 0;
 }
 
 // For step by step guide follow this link:
-// https://www.kimi.com/share/19ef8bfd-ff12-8732-8000-0000983d0a62
+// https://www.kimi.com/share/19ef8e43-0d62-86cc-8000-00004e18b0d8

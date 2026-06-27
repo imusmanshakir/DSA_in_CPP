@@ -1,3 +1,24 @@
+I am learning recursion in C++ and I want to deeply understand what happens behind the scenes in the call stack.
+
+I will provide you a piece of recursive code. Explain only the recursion and call stack behavior.
+
+Focus on:
+
+- How function calls are pushed into the call stack
+- What information each stack frame stores
+- What happens when a recursive function calls itself
+- Which function is paused and waiting
+- How the program remembers where to continue after a recursive call returns
+- How the stack starts unwinding
+- How return values move back through previous calls
+- The difference between going deeper into recursion and coming back up
+
+For my code, trace the execution step by step and show the call stack visually at important moments.
+
+Do not just explain the code line by line. I want a mental model of what the computer is doing internally while recursion is running.
+
+Assume I know basic C++ but I struggle to visualize recursion and stack memory.
+
 # 🌳 Realistic Roadmap to Learn Trees Data Structures
 
 ## Rule #1
