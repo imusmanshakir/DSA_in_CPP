@@ -37,7 +37,17 @@ int height(Node *root)
     int leftHeight = height(root->left);
     int rightHeight = height(root->right);
     return 1 + max(leftHeight, rightHeight);
-};
+}
+
+int diameter(Node *root)
+{
+    if (root == nullptr)
+        return 0;
+    int leftDiameter = diameter(root->left);
+    int rightDiameter = diameter(root->right);
+    int rootDiameter = height(root->left) + height(root->right);
+    return max(leftDiameter, max(rightDiameter, rootDiameter));
+}
 
 int main()
 {
@@ -45,10 +55,7 @@ int main()
     Node *root = buildTree(preorder);
 
     cout << "Height: " << height(root) << endl;
+    cout << "Diameter: " << diameter(root) << endl;
 
     return 0;
 }
-
-// For step by step guide follow this link:
-// https://www.kimi.com/share/19ef8817-3052-8f18-8000-0000824ac93c
-// https://www.kimi.com/share/19f0f5bf-e2e2-840a-8000-00000534023d
